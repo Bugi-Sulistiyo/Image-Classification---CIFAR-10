@@ -1,13 +1,14 @@
 import tensorflow as tf
 import numpy as np
 import io
+import os
 
 from flask import Flask, request, jsonify
 from PIL import Image
 
 app = Flask(__name__)
 
-model = tf.keras.models.load_model("./../model/model.h5")
+model = tf.keras.models.load_model(os.path.join(os.path.dirname(__file__), "..", "model", "model.h5"))
 class_name = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
 
 def preprocess_img_bytes(image):
